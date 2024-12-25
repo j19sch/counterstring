@@ -32,7 +32,7 @@ class App extends Component {
               value={this.state.value}
               onInput={this.onInput}
             />
-            <button type="submit">Update</button>
+            <button type="submit">Generate</button>
           </form>
         </section>
         <section>
