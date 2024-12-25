@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Perlclips' counterstring but on the web</h1>
+        <h1>Perlclip's counterstring but on the web</h1>
         <section>
           <form onSubmit={this.onSubmit}>
             <input
