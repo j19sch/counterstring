@@ -9,7 +9,7 @@
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "test": "vitest",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --nojekyll"
   },
   "dependencies": {
     "preact": "^10.25.3"
