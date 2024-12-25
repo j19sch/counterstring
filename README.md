@@ -11,6 +11,7 @@ Perlclip's counterstring but on the web
 - https://www.jameslmilner.com/posts/preact-on-github-pages/
 - https://medium.com/@ninadkarlekar/deploying-your-react-project-on-github-pages-a-step-by-step-guide-f8b364fa75fa\
   - https://www.npmjs.com/package/gh-pages
+  - `npm run deploy`
 
 ## Cloudflare
 
