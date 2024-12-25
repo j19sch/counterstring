@@ -1,4 +1,13 @@
 export function counterstring(length: number) {
+  if (typeof length !== "number") {
+    // TODO: arguably not needed because TypeScript, but eslint does not report passing a string
+    throw new Error("Length should be a number");
+  } else if (length < 0) {
+    throw new Error("No negative length");
+  } else if (length > 1000) {
+    throw new Error("Max length is 1000");
+  }
+
   const token = "*";
   const tokenLength: number = token.length;
 

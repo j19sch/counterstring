@@ -1,4 +1,4 @@
-import { expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import { counterstring } from "./counterstring";
 
@@ -16,4 +16,18 @@ test.each([
   ],
 ])("counterstring length %i", (length, expected) => {
   expect(counterstring(length)).toBe(expected);
+});
+
+describe("invalid inputs", () => {
+  test("string", () => {
+    expect(() => counterstring("asd")).toThrowError(
+      "Length should be a number",
+    );
+  });
+  test("negative number", () => {
+    expect(() => counterstring(-1)).toThrowError("No negative length");
+  });
+  test("larger than 1000", () => {
+    expect(() => counterstring(1001)).toThrowError("Max length is 1000");
+  });
 });
