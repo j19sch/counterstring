@@ -11,3 +11,8 @@ test("counterstring length 1", () => {
     const result = counterstring(1)
     expect(result).toBe("*")
 })
+
+test("counterstring length 2", () => {
+    const result = counterstring(2)
+    expect(result).toBe("2*")
+})
