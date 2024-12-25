@@ -1,8 +1,8 @@
 export function counterstring(length: number) {
-  const token: string = "*";
+  const token = "*";
   const tokenLength: number = token.length;
 
-  let stringList: string[] = [];
+  const stringList: string[] = [];
   stringList.push("");
 
   let latestTokenPosition;
