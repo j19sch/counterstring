@@ -1,15 +1,13 @@
-
 import { Component } from "preact";
 
 import { counterstring } from "../counterstring";
 
-
 export class CounterString extends Component {
   constructor() {
     super();
-  //   this.state = { time: Date.now() };
+    //   this.state = { time: Date.now() };
   }
-  
+
   state = { value: "", stringLength: "" };
 
   onInput = (ev) => {

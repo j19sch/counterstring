@@ -1,6 +1,5 @@
-
-import { h } from 'preact';
-import { useState } from 'preact/hooks';
+import { h } from "preact";
+import { useState } from "preact/hooks";
 
 export function Counter({ initialCount }) {
   const [count, setCount] = useState(initialCount);

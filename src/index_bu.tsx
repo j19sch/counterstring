@@ -9,7 +9,7 @@ export class App extends Component {
   //   super();
   //   this.state = { time: Date.now() };
   // }
-  
+
   state = { value: "", stringLength: "" };
 
   onInput = (ev) => {
