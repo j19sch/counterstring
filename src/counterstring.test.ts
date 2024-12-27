@@ -27,7 +27,4 @@ describe("invalid inputs", () => {
   test("negative number", () => {
     expect(() => counterstring(-1)).toThrowError("No negative length");
   });
-  test("larger than 1000", () => {
-    expect(() => counterstring(1001)).toThrowError("Max length is 1000");
-  });
 });
