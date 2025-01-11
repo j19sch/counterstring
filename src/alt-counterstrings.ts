@@ -113,7 +113,7 @@ export function makeCS(length: number) {
     // length of pos + 1 is the length of the thing we'll add to the string
     // reversing a string in TypeScript is not trivial
     text = text + pip + pos.toString().split("").reverse().join("");
-    pos = pos - pos.toString().length + 1; // subtract the length of the thing we're adding
+    pos = pos - (pos.toString().length + 1); // subtract the length of the thing we're adding
   }
 
   text = text + pip.repeat(target - text.length); // should be 1 or 0

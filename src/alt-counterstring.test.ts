@@ -3,7 +3,7 @@ import { describe, expect, test } from "vitest";
 import {
   concatenateString,
   evilTester,
-  //   makeCS,
+  makeCS,
   reverseList,
   templateString,
 } from "./alt-counterstrings";
@@ -14,7 +14,7 @@ describe.each([
   [reverseList],
   [templateString],
   [concatenateString],
-  //   [makeCS], // TODO: fix function
+  [makeCS],
   [evilTester],
 ])(`function %s`, (counterstringFunction) => {
   test.each([
