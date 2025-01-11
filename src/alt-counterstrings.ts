@@ -99,6 +99,27 @@ export function evilTester(count: number) {
   return counterString.split("").reverse().join("");
 }
 
+export function onlyOneReverse(length: number) {
+  const counterList = [];
+
+  while (length > 0) {
+    let appendThis = length.toString() + "*";
+
+    if (appendThis.length > length) {
+      // length is 1 (always?)
+      // at the end, appendThis.length is always 2, so length is 0-9, so 0 or 1 to trigger the if, but while guarantees length > 0, so always 1
+      // appendThis = appendThis.substring(length, appendThis.length);
+      appendThis = "*";
+    }
+
+    counterList.push(appendThis);
+
+    length = length - appendThis.length;
+  }
+
+  return counterList.reverse().join("");
+}
+
 export function makeCS(length: number) {
   // TODO: does not work properly
   // taken from PerlClip, translated to TS

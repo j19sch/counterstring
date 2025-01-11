@@ -4,6 +4,7 @@ import {
   concatenateString,
   evilTester,
   makeCS,
+  onlyOneReverse,
   reverseList,
   templateString,
 } from "./alt-counterstrings";
@@ -16,6 +17,7 @@ describe.each([
   [concatenateString],
   [makeCS],
   [evilTester],
+  [onlyOneReverse],
 ])(`function %s`, (counterstringFunction) => {
   test.each([
     [0, ""],

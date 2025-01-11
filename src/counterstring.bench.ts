@@ -5,6 +5,7 @@ import {
   concatenateString,
   evilTester,
   makeCS,
+  onlyOneReverse,
   reverseList,
   templateString,
 } from "./alt-counterstrings";
@@ -70,6 +71,10 @@ describe("counterstring 5", () => {
   bench("evilTester", () => {
     evilTester(length);
   });
+
+  bench("onlyOneReverse", () => {
+    onlyOneReverse(length);
+  });
 });
 
 describe("counterstring 100", () => {
@@ -96,6 +101,10 @@ describe("counterstring 100", () => {
 
   bench("evilTester", () => {
     evilTester(length);
+  });
+
+  bench("onlyOneReverse", () => {
+    onlyOneReverse(length);
   });
 });
 
@@ -124,6 +133,10 @@ describe("counterstring 1000", () => {
   bench("evilTester", () => {
     evilTester(length);
   });
+
+  bench("onlyOneReverse", () => {
+    onlyOneReverse(length);
+  });
 });
 
 describe("counterstring 5000", () => {
@@ -150,6 +163,10 @@ describe("counterstring 5000", () => {
 
   bench("evilTester", () => {
     evilTester(length);
+  });
+
+  bench("onlyOneReverse", () => {
+    onlyOneReverse(length);
   });
 });
 
@@ -178,6 +195,10 @@ describe("counterstring 100000", () => {
   bench("evilTester", () => {
     evilTester(length);
   });
+
+  bench("onlyOneReverse", () => {
+    onlyOneReverse(length);
+  });
 });
 
 describe("counterstring 1000000", () => {
@@ -204,5 +225,9 @@ describe("counterstring 1000000", () => {
 
   bench("evilTester", () => {
     evilTester(length);
+  });
+
+  bench("onlyOneReverse", () => {
+    onlyOneReverse(length);
   });
 });
