@@ -1,56 +1,53 @@
 import { bench, describe } from "vitest";
 
 import {
-  evilTester,
-  fullyOptimizedConcat,
-  fullyOptimizedPlus,
-  fullyOptimizedPlusTernary,
-  fullyOptimizedTemplateString,
-  makeCS,
-  evilTesterCreateListAndReverse,
-  recursive,
   createListAndReverseIt,
+  evilTester,
+  evilTesterCreateListAndReverseIt,
+  perClipInTS,
+  recursiveFunction,
+  whileAndIfWithConcat,
+  whileAndIfWithPlus,
+  whileAndIfWithTemplateString,
 } from "./alt-counterstrings";
 
-// Note: Breaking changes might not follow SemVer, please pin Vitest's version when using benchmarking.
+// Vitest note: Breaking changes might not follow SemVer, please pin Vitest's version when using benchmarking.
 
 describe("counterstring 100.000", () => {
   // not parametrizing because results in less detailed output
   const length = 100 * 1000;
 
-  bench("reverse list", () => {
+  bench("createListAndReverseIt", () => {
     createListAndReverseIt(length);
-  });
-
-  bench("template string", () => {
-    fullyOptimizedTemplateString(length);
-  });
-
-  bench("concatenate string", () => {
-    fullyOptimizedConcat(length);
-  });
-
-  bench("perl as TS", () => {
-    makeCS(length);
   });
 
   bench("evilTester", () => {
     evilTester(length);
   });
 
-  bench("onlyOneReverse", () => {
-    evilTesterCreateListAndReverse(length);
+  bench("evilTesterCreateListAndReverseIt", () => {
+    evilTesterCreateListAndReverseIt(length);
   });
 
-  bench("fullyOptimizedPlus", () => {
-    fullyOptimizedPlus(length);
+  bench("perClipInTS", () => {
+    perClipInTS(length);
   });
 
-  bench("fullyOptimizedPlusTernary", () => {
-    fullyOptimizedPlusTernary(length);
+  bench("recursiveFunction", () => {
+    // is not benchmarked but does not result in error either
+    // all measurements are 0, it's marked as slowest and "NaNx faster than recursiveFunction"
+    recursiveFunction(length);
   });
 
-  bench("recursive", () => {
-    recursive(length);
+  bench("whileAndIfWithConcat", () => {
+    whileAndIfWithConcat(length);
+  });
+
+  bench("whileAndIfWithPlus", () => {
+    whileAndIfWithPlus(length);
+  });
+
+  bench("whileAndIfWithTemplateString", () => {
+    whileAndIfWithTemplateString(length);
   });
 });

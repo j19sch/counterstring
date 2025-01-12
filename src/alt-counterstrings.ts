@@ -25,108 +25,10 @@ export function createListAndReverseIt(length: number) {
   return counterString;
 }
 
-export function fullyOptimizedPlusTernary(length: number) {
-  let counterString = "";
-
-  while (length > 1) {
-    const prependThis = length.toString() + "*";
-    counterString = prependThis + counterString;
-    length -= prependThis.length;
-  }
-
-  counterString =
-    length === 1 ? (counterString = "*" + counterString) : counterString;
-
-  return counterString;
-}
-
-export function fullyOptimizedPlus(length: number) {
-  let counterString = "";
-
-  while (length > 1) {
-    const prependThis = length.toString() + "*";
-    counterString = prependThis + counterString;
-    length -= prependThis.length;
-  }
-
-  if (length === 1) {
-    counterString = "*" + counterString;
-  }
-
-  return counterString;
-}
-
-export function fullyOptimizedConcat(length: number) {
-  let counterString = "";
-
-  while (length > 1) {
-    const prependThis = length.toString().concat("*");
-    counterString = prependThis.concat(counterString);
-    length -= prependThis.length;
-  }
-
-  if (length === 1) {
-    counterString = "*".concat(counterString);
-  }
-
-  return counterString;
-}
-
-export function fullyOptimizedTemplateString(length: number) {
-  let counterString = "";
-
-  while (length > 1) {
-    const prependThis = `${length.toString()}*`;
-    counterString = `${prependThis}${counterString}`;
-    length -= prependThis.length;
-  }
-
-  if (length === 1) {
-    counterString = `*${counterString}`;
-  }
-
-  return counterString;
-}
-
-export function recursive(length: number, counterString = "") {
-  if (length > 1) {
-    const prependThis = length.toString() + "*";
-    counterString = prependThis + counterString;
-    return recursive(length - prependThis.length, counterString);
-  } else if (length === 1) {
-    return "*" + counterString;
-  } else if (length === 0) {
-    return counterString;
-  }
-}
-export function makeCS(length: number) {
-  // TODO: does not work properly
-  // taken from PerlClip, translated to TS
-  // build the thing in reverse, then reverse the thing
-  let pos: number = length;
-  const pip = "*";
-
-  const target = pos;
-  let text = "";
-
-  while (text.length + pos.toString().length + 1 <= target) {
-    // length of pos + 1 is the length of the thing we'll add to the string
-    // reversing a string in TypeScript is not trivial
-    text = text + pip + pos.toString().split("").reverse().join("");
-    pos = pos - (pos.toString().length + 1); // subtract the length of the thing we're adding
-  }
-
-  text = text + pip.repeat(target - text.length); // should be 1 or 0
-
-  return text.split("").reverse().join("");
-}
-
 export function evilTester(count: number) {
-  // taken from https://www.eviltester.com/blog/eviltester/chrome-extensions/2019-02-19-counterstring-snippets/
-  // refactor adds a function to reverse the string
-  // https://github.com/eviltester/counterstringjs/blob/master/snippets/counterstring.js
+  // copied from https://www.eviltester.com/blog/eviltester/chrome-extensions/2019-02-19-counterstring-snippets/#counterstring-generation-function
+  // I changed the vars to lets, because ESlint.
   // "The simplest, and most elegant way to create a CounterString seems to be the approach used in PerlClip." - https://www.eviltester.com/2018/05/counterstring-algorithms
-  // this is JavaScript, I did change vars to lets
   // the substring is smart
   let counterString = "";
 
@@ -145,7 +47,8 @@ export function evilTester(count: number) {
   return counterString.split("").reverse().join("");
 }
 
-export function evilTesterCreateListAndReverse(count: number) {
+export function evilTesterCreateListAndReverseIt(count: number) {
+  // combined the evilTester() solution with createListAndReverseIt()
   const counterList = [];
 
   while (count > 0) {
@@ -157,6 +60,7 @@ export function evilTesterCreateListAndReverse(count: number) {
 
     /*
     The if-statement above can be replaced with: appendThis = count === 1 ? "*" : appendThis
+    Not doing that, to be able to compare performance with the evilTester solution.
     
     Reason:
     appendThis.length can only be 2 or higher.
@@ -172,4 +76,86 @@ export function evilTesterCreateListAndReverse(count: number) {
   }
 
   return counterList.reverse().join("");
+}
+
+export function perClipInTS(length: number) {
+  // copied from PerlClip, https://www.satisfice.com/download/perlclip
+  // I did the translation to TS and added the comments
+  let pos: number = length;
+  const pip = "*";
+
+  const target = pos;
+  let text = "";
+
+  // pos.toString().length + 1 is the length of the thing we want to add
+
+  while (text.length + pos.toString().length + 1 <= target) {
+    text = text + pip + pos.toString().split("").reverse().join(""); // Perl has reverse().
+    pos = pos - (pos.toString().length + 1);
+  }
+
+  text = text + pip.repeat(target - text.length); // target - text.length should be 1 or 0
+
+  return text.split("").reverse().join("");
+}
+
+export function recursiveFunction(length: number, counterString = "") {
+  if (length > 1) {
+    const prependThis = length.toString() + "*";
+    counterString = prependThis + counterString;
+    return recursiveFunction(length - prependThis.length, counterString);
+  } else if (length === 1) {
+    return "*" + counterString;
+  } else if (length === 0) {
+    return counterString;
+  }
+}
+
+export function whileAndIfWithPlus(length: number) {
+  let counterString = "";
+
+  while (length > 1) {
+    const prependThis = length.toString() + "*";
+    counterString = prependThis + counterString;
+    length -= prependThis.length;
+  }
+
+  // replacing with ternary operator does not make a difference
+  if (length === 1) {
+    counterString = "*" + counterString;
+  }
+
+  return counterString;
+}
+
+export function whileAndIfWithConcat(length: number) {
+  let counterString = "";
+
+  while (length > 1) {
+    const prependThis = length.toString().concat("*");
+    counterString = prependThis.concat(counterString);
+    length -= prependThis.length;
+  }
+
+  if (length === 1) {
+    counterString = "*".concat(counterString);
+  }
+
+  return counterString;
+}
+
+export function whileAndIfWithTemplateString(length: number) {
+  let counterString = "";
+
+  while (length > 1) {
+    const prependThis = `${length.toString()}*`;
+    counterString = `${prependThis}${counterString}`;
+    length -= prependThis.length;
+  }
+
+  if (length === 1) {
+    counterString = `*${counterString}`;
+  }
+
+  return counterString;
 }

@@ -14,6 +14,8 @@ export function counterstring(length: number) {
     length -= prependThis.length;
   }
 
+  // At this point length is either 1 (the while-loop prepended 3*) or 0 ( the while-loop prepended 2*).
+  // If length is 1, we need to prepend "*" to get the correct counterstring. If it's 0, we're done.
   if (length === 1) {
     counterString = "*" + counterString;
   }

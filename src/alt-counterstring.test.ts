@@ -1,33 +1,31 @@
 import { describe, expect, test } from "vitest";
 
 import {
-  evilTester,
-  fullyOptimizedConcat,
-  fullyOptimizedPlus,
-  fullyOptimizedPlusTernary,
-  fullyOptimizedTemplateString,
-  makeCS,
-  evilTesterCreateListAndReverse,
-  recursive,
   createListAndReverseIt,
+  evilTester,
+  evilTesterCreateListAndReverseIt,
+  perClipInTS,
+  recursiveFunction,
+  whileAndIfWithConcat,
+  whileAndIfWithPlus,
+  whileAndIfWithTemplateString,
 } from "./alt-counterstrings";
 
 describe.each([
-  { fn: fullyOptimizedConcat, fnName: fullyOptimizedConcat.name },
-  { fn: fullyOptimizedPlus, fnName: fullyOptimizedPlus.name },
-  { fn: fullyOptimizedPlusTernary, fnName: fullyOptimizedPlusTernary.name },
-  {
-    fn: fullyOptimizedTemplateString,
-    fnName: fullyOptimizedTemplateString.name,
-  },
-  { fn: evilTester, fnName: evilTester.name },
   { fn: createListAndReverseIt, fnName: createListAndReverseIt.name },
-  { fn: makeCS, fnName: makeCS.name },
+  { fn: evilTester, fnName: evilTester.name },
   {
-    fn: evilTesterCreateListAndReverse,
-    fnName: evilTesterCreateListAndReverse.name,
+    fn: evilTesterCreateListAndReverseIt,
+    fnName: evilTesterCreateListAndReverseIt.name,
   },
-  { fn: recursive, fnName: recursive.name },
+  { fn: perClipInTS, fnName: perClipInTS.name },
+  { fn: recursiveFunction, fnName: recursiveFunction.name },
+  { fn: whileAndIfWithConcat, fnName: whileAndIfWithConcat.name },
+  { fn: whileAndIfWithPlus, fnName: whileAndIfWithPlus.name },
+  {
+    fn: whileAndIfWithTemplateString,
+    fnName: whileAndIfWithTemplateString.name,
+  },
 ])(`function $fnName`, ({ fn }) => {
   test.each([
     [0, ""],
