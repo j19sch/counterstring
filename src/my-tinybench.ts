@@ -8,7 +8,7 @@ import {
   fullyOptimizedPlus,
   fullyOptimizedTemplateString,
   makeCS,
-  onlyOneReverse,
+  evilTesterCreateListAndReverse,
   // recursive,
   createListAndReverseIt,
 } from "./alt-counterstrings";
@@ -43,7 +43,7 @@ bench
     makeCS(length);
   })
   .add("onlyOneReverse", async () => {
-    onlyOneReverse(length);
+    evilTesterCreateListAndReverse(length);
   })
   .add("fullyOptimizedTemplateString", async () => {
     fullyOptimizedTemplateString(length);

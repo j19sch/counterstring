@@ -4,9 +4,10 @@ import {
   evilTester,
   fullyOptimizedConcat,
   fullyOptimizedPlus,
+  fullyOptimizedPlusTernary,
   fullyOptimizedTemplateString,
   makeCS,
-  onlyOneReverse,
+  evilTesterCreateListAndReverse,
   recursive,
   createListAndReverseIt,
 } from "./alt-counterstrings";
@@ -38,11 +39,15 @@ describe("counterstring 100.000", () => {
   });
 
   bench("onlyOneReverse", () => {
-    onlyOneReverse(length);
+    evilTesterCreateListAndReverse(length);
   });
 
-  bench("fullyOptimized", () => {
+  bench("fullyOptimizedPlus", () => {
     fullyOptimizedPlus(length);
+  });
+
+  bench("fullyOptimizedPlusTernary", () => {
+    fullyOptimizedPlusTernary(length);
   });
 
   bench("recursive", () => {

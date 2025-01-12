@@ -25,124 +25,19 @@ export function createListAndReverseIt(length: number) {
   return counterString;
 }
 
-// export function catWithPlus(length: number) {
-//   const token = "*";
-//   const tokenLength: number = token.length;
-
-//   let result = "";
-
-//   let latestTokenPosition: number;
-//   let insertLength: number;
-
-//   while (length > 0) {
-//     if (latestTokenPosition) {
-//       result = latestTokenPosition.toString() + result;
-//       insertLength = latestTokenPosition.toString().length;
-//       latestTokenPosition = null;
-//     } else {
-//       result = token + result;
-//       latestTokenPosition = length;
-//       insertLength = tokenLength;
-//     }
-//     length -= insertLength;
-//   }
-
-//   return result;
-// }
-
-// export function catWithTemplateStrings(length: number) {
-//   const token = "*";
-//   const tokenLength: number = token.length;
-
-//   let result = "";
-
-//   let latestTokenPosition: number;
-//   let insertLength: number;
-
-//   while (length > 0) {
-//     if (latestTokenPosition) {
-//       result = `${latestTokenPosition.toString()}${result}`;
-//       insertLength = latestTokenPosition.toString().length;
-//       latestTokenPosition = null;
-//     } else {
-//       result = `${token}${result}`;
-//       latestTokenPosition = length;
-//       insertLength = tokenLength;
-//     }
-//     length -= insertLength;
-//   }
-
-//   return result;
-// }
-
-// export function catWithConcat(length: number) {
-//   const token = "*";
-//   const tokenLength: number = token.length;
-
-//   let result = "";
-
-//   let latestTokenPosition;
-//   let insertLength;
-
-//   while (length > 0) {
-//     if (latestTokenPosition) {
-//       result = latestTokenPosition.toString().concat(result);
-//       insertLength = latestTokenPosition.toString().length;
-//       latestTokenPosition = null;
-//     } else {
-//       result = token.concat(result);
-//       latestTokenPosition = length;
-//       insertLength = tokenLength;
-//     }
-//     length -= insertLength;
-//   }
-
-//   return result;
-// }
-
-export function evilTester(count: number) {
-  // taken from https://www.eviltester.com/blog/eviltester/chrome-extensions/2019-02-19-counterstring-snippets/
-  // refactor adds a function to reverse the string
-  // https://github.com/eviltester/counterstringjs/blob/master/snippets/counterstring.js
-  // "The simplest, and most elegant way to create a CounterString seems to be the approach used in PerlClip." - https://www.eviltester.com/2018/05/counterstring-algorithms
-  // this is JavaScript, I did change vars to lets
-  // the substring is smart
+export function fullyOptimizedPlusTernary(length: number) {
   let counterString = "";
 
-  while (count > 0) {
-    let appendThis = "*" + count.toString().split("").reverse().join("");
-
-    if (appendThis.length > count) {
-      appendThis = appendThis.substring(0, count);
-    }
-
-    counterString = counterString + appendThis;
-
-    count = count - appendThis.length;
+  while (length > 1) {
+    const prependThis = length.toString() + "*";
+    counterString = prependThis + counterString;
+    length -= prependThis.length;
   }
 
-  return counterString.split("").reverse().join("");
-}
+  counterString =
+    length === 1 ? (counterString = "*" + counterString) : counterString;
 
-export function onlyOneReverse(length: number) {
-  const counterList = [];
-
-  while (length > 0) {
-    let appendThis = length.toString() + "*";
-
-    if (appendThis.length > length) {
-      // length is 1 (always?)
-      // at the end, appendThis.length is always 2, so length is 0-9, so 0 or 1 to trigger the if, but while guarantees length > 0, so always 1
-      // appendThis = appendThis.substring(length, appendThis.length);
-      appendThis = "*";
-    }
-
-    counterList.push(appendThis);
-
-    length = length - appendThis.length;
-  }
-
-  return counterList.reverse().join("");
+  return counterString;
 }
 
 export function fullyOptimizedPlus(length: number) {
@@ -224,4 +119,57 @@ export function makeCS(length: number) {
   text = text + pip.repeat(target - text.length); // should be 1 or 0
 
   return text.split("").reverse().join("");
+}
+
+export function evilTester(count: number) {
+  // taken from https://www.eviltester.com/blog/eviltester/chrome-extensions/2019-02-19-counterstring-snippets/
+  // refactor adds a function to reverse the string
+  // https://github.com/eviltester/counterstringjs/blob/master/snippets/counterstring.js
+  // "The simplest, and most elegant way to create a CounterString seems to be the approach used in PerlClip." - https://www.eviltester.com/2018/05/counterstring-algorithms
+  // this is JavaScript, I did change vars to lets
+  // the substring is smart
+  let counterString = "";
+
+  while (count > 0) {
+    let appendThis = "*" + count.toString().split("").reverse().join("");
+
+    if (appendThis.length > count) {
+      appendThis = appendThis.substring(0, count);
+    }
+
+    counterString = counterString + appendThis;
+
+    count = count - appendThis.length;
+  }
+
+  return counterString.split("").reverse().join("");
+}
+
+export function evilTesterCreateListAndReverse(count: number) {
+  const counterList = [];
+
+  while (count > 0) {
+    let appendThis = count.toString() + "*";
+
+    if (appendThis.length > count) {
+      appendThis = appendThis.substring(count, appendThis.length);
+    }
+
+    /*
+    The if-statement above can be replaced with: appendThis = count === 1 ? "*" : appendThis
+    
+    Reason:
+    appendThis.length can only be 2 or higher.
+    count can only be 1 or higher.
+    count will be higher than appendThis.length until right at the end of generating the counterstring.
+    So appendThis.length will only be larger than count when count is 1.
+    In that case we need to prepend our counterstring with "*". Else we can leave the counterstring as is.
+    */
+
+    counterList.push(appendThis);
+
+    count = count - appendThis.length;
+  }
+
+  return counterList.reverse().join("");
 }

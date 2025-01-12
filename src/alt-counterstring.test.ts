@@ -4,9 +4,10 @@ import {
   evilTester,
   fullyOptimizedConcat,
   fullyOptimizedPlus,
+  fullyOptimizedPlusTernary,
   fullyOptimizedTemplateString,
   makeCS,
-  onlyOneReverse,
+  evilTesterCreateListAndReverse,
   recursive,
   createListAndReverseIt,
 } from "./alt-counterstrings";
@@ -14,6 +15,7 @@ import {
 describe.each([
   { fn: fullyOptimizedConcat, fnName: fullyOptimizedConcat.name },
   { fn: fullyOptimizedPlus, fnName: fullyOptimizedPlus.name },
+  { fn: fullyOptimizedPlusTernary, fnName: fullyOptimizedPlusTernary.name },
   {
     fn: fullyOptimizedTemplateString,
     fnName: fullyOptimizedTemplateString.name,
@@ -21,7 +23,10 @@ describe.each([
   { fn: evilTester, fnName: evilTester.name },
   { fn: createListAndReverseIt, fnName: createListAndReverseIt.name },
   { fn: makeCS, fnName: makeCS.name },
-  { fn: onlyOneReverse, fnName: onlyOneReverse.name },
+  {
+    fn: evilTesterCreateListAndReverse,
+    fnName: evilTesterCreateListAndReverse.name,
+  },
   { fn: recursive, fnName: recursive.name },
 ])(`function $fnName`, ({ fn }) => {
   test.each([
