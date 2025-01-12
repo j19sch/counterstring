@@ -7,14 +7,14 @@ import {
   evilTester,
   evilTesterCreateListAndReverseIt,
   perClipInTS,
-  // recursiveFunction,
+  recursiveFunction,
   whileAndIfWithConcat,
   whileAndIfWithPlus,
   whileAndIfWithTemplateString,
 } from "./alt-counterstrings";
 
 const bench = new Bench({
-  name: "counterstring benchmark",
+  name: "counterstring length 10.000",
   setup: (_task, mode) => {
     // Run the garbage collector before warmup at each cycle
     if (mode === "warmup" && typeof globalThis.gc === "function") {
@@ -24,7 +24,7 @@ const bench = new Bench({
   time: 100,
 });
 
-const length = 100 * 1000;
+const length = 10 * 1000;
 
 bench
   .add("createListAndReverseIt", () => {
@@ -39,10 +39,10 @@ bench
   .add("perClipInTS", async () => {
     perClipInTS(length);
   })
-  // .add("recursive", async () => {
-  //   // RangeError: Maximum call stack size exceeded
-  //   recursive(length);
-  // })
+  .add("recursive", async () => {
+    // if length is too high, you'l get a RangeError: Maximum call stack size exceeded
+    recursiveFunction(length);
+  })
   .add("whileAndIfWithConcat", async () => {
     whileAndIfWithConcat(length);
   })

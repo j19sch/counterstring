@@ -13,9 +13,9 @@ import {
 
 // Vitest note: Breaking changes might not follow SemVer, please pin Vitest's version when using benchmarking.
 
-describe("counterstring 100.000", () => {
+describe("counterstring 10.000", () => {
   // not parametrizing because results in less detailed output
-  const length = 100 * 1000;
+  const length = 10 * 1000;
 
   bench("createListAndReverseIt", () => {
     createListAndReverseIt(length);
@@ -34,7 +34,7 @@ describe("counterstring 100.000", () => {
   });
 
   bench("recursiveFunction", () => {
-    // is not benchmarked but does not result in error either
+    // if length is too high, the benchmark will not give results for this function:
     // all measurements are 0, it's marked as slowest and "NaNx faster than recursiveFunction"
     recursiveFunction(length);
   });
