@@ -1,12 +1,12 @@
-export function reverseList(length: number) {
+export function createListAndReverseIt(length: number) {
   const token = "*";
   const tokenLength: number = token.length;
 
   const stringList: string[] = [];
   stringList.push("");
 
-  let latestTokenPosition;
-  let insertLength;
+  let latestTokenPosition: number;
+  let insertLength: number;
 
   while (length > 0) {
     if (latestTokenPosition) {
@@ -25,55 +25,80 @@ export function reverseList(length: number) {
   return counterString;
 }
 
-export function templateString(length: number) {
-  const token = "*";
-  const tokenLength: number = token.length;
+// export function catWithPlus(length: number) {
+//   const token = "*";
+//   const tokenLength: number = token.length;
 
-  let result = "";
+//   let result = "";
 
-  let latestTokenPosition;
-  let insertLength;
+//   let latestTokenPosition: number;
+//   let insertLength: number;
 
-  while (length > 0) {
-    if (latestTokenPosition) {
-      result = `${latestTokenPosition.toString()}${result}`;
-      insertLength = latestTokenPosition.toString().length;
-      latestTokenPosition = null;
-    } else {
-      result = `${token}${result}`;
-      latestTokenPosition = length;
-      insertLength = tokenLength;
-    }
-    length -= insertLength;
-  }
+//   while (length > 0) {
+//     if (latestTokenPosition) {
+//       result = latestTokenPosition.toString() + result;
+//       insertLength = latestTokenPosition.toString().length;
+//       latestTokenPosition = null;
+//     } else {
+//       result = token + result;
+//       latestTokenPosition = length;
+//       insertLength = tokenLength;
+//     }
+//     length -= insertLength;
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-export function concatenateString(length: number) {
-  const token = "*";
-  const tokenLength: number = token.length;
+// export function catWithTemplateStrings(length: number) {
+//   const token = "*";
+//   const tokenLength: number = token.length;
 
-  let result = "";
+//   let result = "";
 
-  let latestTokenPosition;
-  let insertLength;
+//   let latestTokenPosition: number;
+//   let insertLength: number;
 
-  while (length > 0) {
-    if (latestTokenPosition) {
-      result = latestTokenPosition.toString().concat(result);
-      insertLength = latestTokenPosition.toString().length;
-      latestTokenPosition = null;
-    } else {
-      result = token.concat(result);
-      latestTokenPosition = length;
-      insertLength = tokenLength;
-    }
-    length -= insertLength;
-  }
+//   while (length > 0) {
+//     if (latestTokenPosition) {
+//       result = `${latestTokenPosition.toString()}${result}`;
+//       insertLength = latestTokenPosition.toString().length;
+//       latestTokenPosition = null;
+//     } else {
+//       result = `${token}${result}`;
+//       latestTokenPosition = length;
+//       insertLength = tokenLength;
+//     }
+//     length -= insertLength;
+//   }
 
-  return result;
-}
+//   return result;
+// }
+
+// export function catWithConcat(length: number) {
+//   const token = "*";
+//   const tokenLength: number = token.length;
+
+//   let result = "";
+
+//   let latestTokenPosition;
+//   let insertLength;
+
+//   while (length > 0) {
+//     if (latestTokenPosition) {
+//       result = latestTokenPosition.toString().concat(result);
+//       insertLength = latestTokenPosition.toString().length;
+//       latestTokenPosition = null;
+//     } else {
+//       result = token.concat(result);
+//       latestTokenPosition = length;
+//       insertLength = tokenLength;
+//     }
+//     length -= insertLength;
+//   }
+
+//   return result;
+// }
 
 export function evilTester(count: number) {
   // taken from https://www.eviltester.com/blog/eviltester/chrome-extensions/2019-02-19-counterstring-snippets/
@@ -120,6 +145,65 @@ export function onlyOneReverse(length: number) {
   return counterList.reverse().join("");
 }
 
+export function fullyOptimizedPlus(length: number) {
+  let counterString = "";
+
+  while (length > 1) {
+    const prependThis = length.toString() + "*";
+    counterString = prependThis + counterString;
+    length -= prependThis.length;
+  }
+
+  if (length === 1) {
+    counterString = "*" + counterString;
+  }
+
+  return counterString;
+}
+
+export function fullyOptimizedConcat(length: number) {
+  let counterString = "";
+
+  while (length > 1) {
+    const prependThis = length.toString().concat("*");
+    counterString = prependThis.concat(counterString);
+    length -= prependThis.length;
+  }
+
+  if (length === 1) {
+    counterString = "*".concat(counterString);
+  }
+
+  return counterString;
+}
+
+export function fullyOptimizedTemplateString(length: number) {
+  let counterString = "";
+
+  while (length > 1) {
+    const prependThis = `${length.toString()}*`;
+    counterString = `${prependThis}${counterString}`;
+    length -= prependThis.length;
+  }
+
+  if (length === 1) {
+    counterString = `*${counterString}`;
+  }
+
+  return counterString;
+}
+
+export function recursive(length: number, counterString = "") {
+  if (length > 1) {
+    const prependThis = length.toString() + "*";
+    counterString = prependThis + counterString;
+    return recursive(length - prependThis.length, counterString);
+  } else if (length === 1) {
+    return "*" + counterString;
+  } else if (length === 0) {
+    return counterString;
+  }
+}
 export function makeCS(length: number) {
   // TODO: does not work properly
   // taken from PerlClip, translated to TS

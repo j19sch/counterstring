@@ -1,21 +1,28 @@
 import { describe, expect, test } from "vitest";
 
 import {
-  concatenateString,
   evilTester,
+  fullyOptimizedConcat,
+  fullyOptimizedPlus,
+  fullyOptimizedTemplateString,
   makeCS,
   onlyOneReverse,
-  reverseList,
-  templateString,
+  recursive,
+  createListAndReverseIt,
 } from "./alt-counterstrings";
 
 describe.each([
-  { fn: reverseList, fnName: reverseList.name },
-  { fn: templateString, fnName: templateString.name },
-  { fn: concatenateString, fnName: concatenateString.name },
-  { fn: makeCS, fnName: makeCS.name },
+  { fn: fullyOptimizedConcat, fnName: fullyOptimizedConcat.name },
+  { fn: fullyOptimizedPlus, fnName: fullyOptimizedPlus.name },
+  {
+    fn: fullyOptimizedTemplateString,
+    fnName: fullyOptimizedTemplateString.name,
+  },
   { fn: evilTester, fnName: evilTester.name },
+  { fn: createListAndReverseIt, fnName: createListAndReverseIt.name },
+  { fn: makeCS, fnName: makeCS.name },
   { fn: onlyOneReverse, fnName: onlyOneReverse.name },
+  { fn: recursive, fnName: recursive.name },
 ])(`function $fnName`, ({ fn }) => {
   test.each([
     [0, ""],

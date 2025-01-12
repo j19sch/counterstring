@@ -6,26 +6,17 @@ export function counterstring(length: number) {
     throw new Error("No negative length");
   }
 
-  const token = "*";
-  const tokenLength: number = token.length;
+  let counterString = "";
 
-  let result = "";
-
-  let latestTokenPosition;
-  let insertLength;
-
-  while (length > 0) {
-    if (latestTokenPosition) {
-      result = latestTokenPosition.toString() + result;
-      insertLength = latestTokenPosition.toString().length;
-      latestTokenPosition = null;
-    } else {
-      result = token + result;
-      latestTokenPosition = length;
-      insertLength = tokenLength;
-    }
-    length -= insertLength;
+  while (length > 1) {
+    const prependThis = length.toString() + "*";
+    counterString = prependThis + counterString;
+    length -= prependThis.length;
   }
 
-  return result;
+  if (length === 1) {
+    counterString = "*" + counterString;
+  }
+
+  return counterString;
 }
