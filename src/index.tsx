@@ -2,44 +2,31 @@ import { render, Component } from "preact";
 
 // import preactLogo from "./assets/preact.svg";
 import "./style.css";
-import { counterstring } from "./counterstring";
+import { CounterString } from "./components/CounterString";
 
-class App extends Component {
-  state = { value: "", stringLength: "" };
+export class App extends Component {
+  // TODO: where should state live? in here or in component?
+  // state = { value: "", stringLength: "" };
 
-  onInput = (ev) => {
-    // This will schedule a state update. Once updated the component
-    // will automatically re-render itself.
-    this.setState({ value: ev.currentTarget.value });
-  };
+  // onInput = (ev) => {
+  //   // This will schedule a state update. Once updated the component
+  //   // will automatically re-render itself.
+  //   this.setState({ value: ev.currentTarget.value });
+  // };
 
-  // Add a submit handler that updates the `name` with the latest input value
-  onSubmit = (ev) => {
-    // Prevent default browser behavior (aka don't submit the form here)
-    ev.preventDefault();
+  // // Add a submit handler that updates the `name` with the latest input value
+  // onSubmit = (ev) => {
+  //   // Prevent default browser behavior (aka don't submit the form here)
+  //   ev.preventDefault();
 
-    this.setState({ stringLength: this.state.value });
-  };
+  //   this.setState({ stringLength: this.state.value });
+  // };
 
   render() {
     return (
       <div>
         <h1>Perlclip's counterstring but on the web</h1>
-        <section>
-          <form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              value={this.state.value}
-              onInput={this.onInput}
-            />
-            <button type="submit">Generate</button>
-          </form>
-        </section>
-        <section>
-          <p>
-            counterstring: {counterstring(parseInt(this.state.stringLength))}
-          </p>
-        </section>
+        <CounterString />
       </div>
     );
   }
