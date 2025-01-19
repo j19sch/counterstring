@@ -6,6 +6,7 @@ import {
   evilTesterCreateListAndReverseIt,
   perClipInTS,
   recursiveFunction,
+  whileAndIfButSeparate,
   whileAndIfWithConcat,
   whileAndIfWithPlus,
   whileAndIfWithTemplateString,
@@ -37,6 +38,10 @@ describe("counterstring 10.000", () => {
     // if length is too high, the benchmark will not give results for this function:
     // all measurements are 0, it's marked as slowest and "NaNx faster than recursiveFunction"
     recursiveFunction(length);
+  });
+
+  bench("whileAndIfButSeparate", () => {
+    whileAndIfButSeparate(length);
   });
 
   bench("whileAndIfWithConcat", () => {

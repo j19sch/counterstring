@@ -6,6 +6,7 @@ import {
   evilTesterCreateListAndReverseIt,
   perClipInTS,
   recursiveFunction,
+  whileAndIfButSeparate,
   whileAndIfWithConcat,
   whileAndIfWithPlus,
   whileAndIfWithTemplateString,
@@ -20,6 +21,7 @@ describe.each([
   },
   { fn: perClipInTS, fnName: perClipInTS.name },
   { fn: recursiveFunction, fnName: recursiveFunction.name },
+  { fn: whileAndIfButSeparate, fnName: whileAndIfButSeparate.name },
   { fn: whileAndIfWithConcat, fnName: whileAndIfWithConcat.name },
   { fn: whileAndIfWithPlus, fnName: whileAndIfWithPlus.name },
   {

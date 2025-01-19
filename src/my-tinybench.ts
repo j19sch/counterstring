@@ -8,6 +8,7 @@ import {
   evilTesterCreateListAndReverseIt,
   perClipInTS,
   recursiveFunction,
+  whileAndIfButSeparate,
   whileAndIfWithConcat,
   whileAndIfWithPlus,
   whileAndIfWithTemplateString,
@@ -42,6 +43,9 @@ bench
   .add("recursive", async () => {
     // if length is too high, you'l get a RangeError: Maximum call stack size exceeded
     recursiveFunction(length);
+  })
+  .add("whileAndIfButSeparate", async () => {
+    whileAndIfButSeparate(length);
   })
   .add("whileAndIfWithConcat", async () => {
     whileAndIfWithConcat(length);
