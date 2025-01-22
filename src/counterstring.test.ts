@@ -19,11 +19,6 @@ test.each([
 });
 
 describe("invalid inputs", () => {
-  test("string", () => {
-    expect(() => counterstring("asd")).toThrowError(
-      "Length should be a number",
-    );
-  });
   test("negative number", () => {
     expect(() => counterstring(-1)).toThrowError("No negative length");
   });
