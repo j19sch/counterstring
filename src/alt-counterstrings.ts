@@ -111,6 +111,25 @@ export function recursiveFunction(length: number, counterString = "") {
   }
 }
 
+export function whileAndIfButSeparate(length: number) {
+  let counterString = "";
+
+  let latestTokenPosition: number = null;
+
+  while (length > 0) {
+    if (latestTokenPosition === null) {
+      counterString = "*" + counterString;
+      latestTokenPosition = length;
+      length = length - 1;
+    } else {
+      counterString = latestTokenPosition.toString() + counterString;
+      length = length - latestTokenPosition.toString().length;
+      latestTokenPosition = null;
+    }
+  }
+  return counterString;
+}
+
 export function whileAndIfWithPlus(length: number) {
   let counterString = "";
 
