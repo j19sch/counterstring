@@ -25,10 +25,14 @@ export class CounterString extends Component {
           <form onSubmit={this.onSubmit}>
             <input
               type="text"
+              id="length"
               value={this.state.value}
               onInput={this.onInput}
             />
             <button type="submit">Generate</button>
+            <output name="counterstring" for="length">
+              {counterstring(parseInt(this.state.stringLength))}
+            </output>
           </form>
         </section>
         <section>
