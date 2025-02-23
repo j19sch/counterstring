@@ -1,17 +1,17 @@
 import { defineConfig } from "vite";
-import checker from "vite-plugin-checker";
+// import checker from "vite-plugin-checker";
 import preact from "@preact/preset-vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     preact(),
-    checker({
-      typescript: true,
-      eslint: {
-        lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
-      },
-    }),
+    // checker({
+    //   typescript: true,
+    //   eslint: {
+    //     lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+    //   },
+    // }),
   ],
   base: "/counterstring/",
 });
