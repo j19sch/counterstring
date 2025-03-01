@@ -29,7 +29,7 @@ export default defineConfig({
     baseURL: "http://localhost:4173/counterstring/",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
+    trace: "retain-on-first-failure",
   },
 
   /* Configure projects for major browsers */
@@ -72,7 +72,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: "npm run preview",
+    command: "npm run build && npm run preview",
     url: "http://localhost:4173/counterstring/",
     reuseExistingServer: !process.env.CI,
   },

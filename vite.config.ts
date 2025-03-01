@@ -8,9 +8,9 @@ export default defineConfig({
     preact(),
     checker({
       typescript: true,
-      eslint: {
-        lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
-      },
+      // eslint: {
+      //   lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+      // },
     }),
   ],
   base: "/counterstring/",

@@ -18,27 +18,32 @@ export class CounterString extends Component {
     this.setState({ stringLength: this.state.value });
   };
 
+  // TODO: form looks different if within section
+
   render() {
     return (
       <div>
         <section>
-          <form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              id="length"
-              value={this.state.value}
-              onInput={this.onInput}
-            />
-            <button type="submit">Generate</button>
-            <output name="counterstring" for="length">
+          <form onSubmit={this.onSubmit} id="counterstring-form">
+            <section>
+              <input
+                type="text"
+                id="length"
+                value={this.state.value}
+                onInput={this.onInput}
+              />
+              <button type="submit">Generate</button>
+            </section>
+            <label for="counterstring-output">counterstring</label>
+            <output
+              name="counterstring"
+              for="length"
+              form="counterstring-form"
+              id="counterstring-output"
+            >
               {counterstring(parseInt(this.state.stringLength))}
             </output>
           </form>
-        </section>
-        <section>
-          <p>
-            counterstring: {counterstring(parseInt(this.state.stringLength))}
-          </p>
         </section>
       </div>
     );
