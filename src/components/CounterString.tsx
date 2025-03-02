@@ -26,6 +26,7 @@ export class CounterString extends Component {
         <section>
           <form onSubmit={this.onSubmit} id="counterstring-form">
             <div>
+              <label for="length">length:</label>
               <input
                 type="text"
                 id="length"
