@@ -13,5 +13,5 @@ test("get counterstring", async ({ page }) => {
   await page.getByRole("textbox").fill("9");
   await page.getByRole("button").click();
   // await expect(page.getByRole("paragraph")).toContainText("*3*5*7*9*");
-  await expect(page.getByLabel("counterstring")).toContainText("*3*5*7*9*");
+  await expect(page.getByLabel("counterstring:")).toContainText("*3*5*7*9*");
 });

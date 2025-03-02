@@ -7,6 +7,7 @@ export default defineConfig(() =>
     viteConfig,
     defineConfig({
       test: {
+        include: ["**/*.test.ts?(x)"],
         globals: true, // testing-library cleanup by vitest
         environment: "jsdom",
         setupFiles: ["src/vitest-setup.ts"],
