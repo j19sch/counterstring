@@ -61,7 +61,7 @@ export function evilTesterCreateListAndReverseIt(count: number) {
     /*
     The if-statement above can be replaced with: appendThis = count === 1 ? "*" : appendThis
     Not doing that, to be able to compare performance with the evilTester solution.
-    
+
     Reason:
     appendThis.length can only be 2 or higher.
     count can only be 1 or higher.
@@ -109,6 +109,23 @@ export function recursiveFunction(length: number, counterString = "") {
   } else if (length === 0) {
     return counterString;
   }
+}
+
+export function tailRecursiveFunction(length: number) {
+  // This function will return results for length 50.000, while recursiveFunction() won't.
+  function tailRC(length: number, counterString: string) {
+    if (length > 1) {
+      const prependThis = length.toString() + "*";
+      counterString = prependThis + counterString;
+      return tailRC(length - prependThis.length, counterString);
+    } else if (length === 1) {
+      return "*" + counterString;
+    } else if (length === 0) {
+      return counterString;
+    }
+  }
+
+  return tailRC(length, "");
 }
 
 export function whileAndIfButSeparate(length: number) {
