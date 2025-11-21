@@ -40,6 +40,10 @@ label {
   margin-right: 0.5rem;
 }
 
+output {
+  overflow-wrap: anywhere;
+}
+
 #counterstring-result {
   margin-top: 1rem;
 }
