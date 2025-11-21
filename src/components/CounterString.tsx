@@ -1,5 +1,5 @@
 import { Component } from "preact";
-import { counterstring } from "../counterstring";
+import { counterstringWrapper } from "../counterstring";
 
 export class CounterString extends Component {
   state = { value: "", stringLength: "" };
@@ -43,7 +43,7 @@ export class CounterString extends Component {
                 form="counterstring-form"
                 id="counterstring-output"
               >
-                {counterstring(parseInt(this.state.stringLength))}
+                {counterstringWrapper(this.state.stringLength)}
               </output>
             </div>
           </form>
