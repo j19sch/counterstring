@@ -2,7 +2,7 @@ import { Component } from "preact";
 import { counterstringWrapper } from "../counterstring";
 
 export class CounterString extends Component {
-  state = { value: "", stringLength: "" };
+  state = { value: "", stringLength: "", result: "" };
 
   onInput = (ev) => {
     // This will schedule a state update. Once updated the component
@@ -16,6 +16,11 @@ export class CounterString extends Component {
     ev.preventDefault();
 
     this.setState({ stringLength: this.state.value });
+    this.setState({ result: counterstringWrapper(this.state.value) });
+  };
+
+  onClick = async () => {
+    await navigator.clipboard.writeText(this.state.result);
   };
 
   // TODO: form looks different if within section
@@ -36,14 +41,18 @@ export class CounterString extends Component {
               <button type="submit">Generate</button>
             </div>
             <div id="counterstring-result">
-              <label for="counterstring-output">counterstring:</label>
+              <button onClick={this.onClick} type="button">
+                Copy
+              </button>
+              {/* <label for="counterstring-output">counterstring:</label> */}
               <output
                 name="counterstring"
                 for="length"
                 form="counterstring-form"
                 id="counterstring-output"
+                aria-label="counterstring output"
               >
-                {counterstringWrapper(this.state.stringLength)}
+                {this.state.result}
               </output>
             </div>
           </form>
