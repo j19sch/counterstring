@@ -1,4 +1,4 @@
-import { describe, test, expect } from "vitest";
+import { describe, test, expect, vi } from "vitest";
 
 import { render, screen } from "@testing-library/preact";
 import { CounterString } from "./CounterString";
@@ -12,7 +12,7 @@ describe("CounterString", () => {
 
   test("should produce counterstring", async () => {
     const user = userEvent.setup();
-    const { container } = render(<CounterString />);
+    render(<CounterString />);
 
     const input = screen.getByRole("textbox");
     await user.type(input, "7");
@@ -20,6 +20,25 @@ describe("CounterString", () => {
     const button = screen.getByRole("button", { name: "Generate" });
     await user.click(button);
 
-    expect(container).toHaveTextContent("*3*5*7*");
+    const output = screen.getByLabelText("counterstring output");
+    expect(output).toHaveTextContent(/^\*3\*5\*7\*$/);
+  });
+
+  test("should copy counterstring", async () => {
+    const mock = vi.spyOn(navigator.clipboard, "writeText");
+    const user = userEvent.setup();
+    render(<CounterString />);
+
+    const input = screen.getByRole("textbox");
+    await user.type(input, "7");
+
+    const button = screen.getByRole("button", { name: "Generate" });
+    await user.click(button);
+    const output = screen.getByLabelText("counterstring output");
+    expect(output).toHaveTextContent(/^\*3\*5\*7\*$/);
+
+    const copyButton = screen.getByRole("button", { name: "Copy" });
+    await user.click(copyButton);
+    expect(mock).toHaveBeenCalledWith("*3*5*7*");
   });
 });
