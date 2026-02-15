@@ -1,3 +1,7 @@
+# Important
+
+This repo has moved to https://codeberg.org/joeposaurus/counterstring and its site to https://counterstring.smallsheds.garden/.
+
 # counterstring
 
 Perlclip's counterstring but on the web
